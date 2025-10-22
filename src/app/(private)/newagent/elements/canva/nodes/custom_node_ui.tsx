@@ -6,6 +6,8 @@ import { useState } from "react";
 import { TextUpdaterNode } from "./custom_node_description";
 import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@heroui/react";
 import { Button } from "@heroui/react";
+import { useAgent } from "./contexts/agentContext";
+import StoreClose from "./contexts/storeClose";
 import {
   Modal,
   ModalContent,
@@ -14,14 +16,16 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@heroui/react";
-
-
 export const CustomNodeUI = () => {
     //Define for Model Window
      const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
+   
+
   return (
+    
     <>
+      
       <Handle type="target" position={Position.Left} id="left-handle" />
 
     <Card className="max-w-[400px] border-2 border-solid border-gray-600">
@@ -43,19 +47,27 @@ export const CustomNodeUI = () => {
     <Button onPress={onOpen} color="default" className="w-full">
       Customize your Agent
     </Button>
-   
-
-   
   </CardBody>
      
       <Divider/>
       
     </Card>
+      {/* Modal for editing */}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (<TextUpdaterNode  />)}
-        </ModalContent>
+    <ModalContent>
+  {(onClose) => (
+    <>
+      {/* Store the onClose in context */}
+      <StoreClose onClose={onClose} />
+      {/* Your content */}
+      <TextUpdaterNode />
+    </>
+  )}
+</ModalContent>
+
+
       </Modal>
+     
     </>
 
     

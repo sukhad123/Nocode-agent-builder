@@ -30,7 +30,17 @@ import { Button } from "@heroui/react";
 import { StartNode } from "./nodes/start_node";
 import { CustomNodeUI } from "./nodes/custom_node_ui";
 import { useState, useCallback } from "react";
+import { useAgent } from './nodes/contexts/agentContext';
+
 export default function CanvaPlayground() {
+
+  const {openaiAPIKey,systemParams} = useAgent();
+//onSave
+const onHandleSave =()=>{
+  //TODO: Handle save logic
+  console.log("Openai API kEY", openaiAPIKey);
+  console.log("System params", systemParams);
+}
  //Available Nodes
  const nodeTypes ={
   startNode: StartNode,
@@ -75,20 +85,40 @@ const [nodes, setNodes] = useState<Node[]>(initialNodes);
   return (
     
     <main className = "h-screen w-screen overflow-hidden">
-     
     <div className = "h-[80%] w-[70%] border-2 border-solid border-indigo-500/50 mx-auto ">
-     <div className=" p-4 flex flex-wrap gap-4 items-center">
-      {availableNodes.map((node)=>{
-      return <Button color = "primary" variant='bordered'  key={node.id} onPress ={()=>{addNode(node)}}>    {(node.data as { label: string }).label} </Button>;
-    })}
- 
-     </div>
      
+     <div className="p-4 flex flex-wrap gap-4 items-center justify-between">
+  {/* Node buttons */}
+  <div className="flex flex-wrap gap-4">
+    {availableNodes.map((node) => (
+      <Button
+        color="primary"
+        variant="faded"
+        className = "text-white"
+        key={node.id}
+        onPress={() => addNode(node)}
+      >
+        {(node.data as { label: string }).label}
+      </Button>
+    ))}
+  </div>
+  <div className ="flex gap-4"><Button onPress={onHandleSave}   className = "text-white" color="primary" variant="faded">Save</Button>
+  {/* Deploy button aligned to the end */}
+  <Button color="primary" variant="shadow">Deploy</Button></div>
+ 
+</div>
+
+    
       <ReactFlow  colorMode="dark" nodes = {nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange}    onConnect={onConnect}
       nodeTypes = {nodeTypes} >
         <Background />
         <Controls />
       </ReactFlow>
-    </div></main>
+  
+    
+      
+    </div>
+    {/*Test button to deploy**/}
+    </main>
   );
 }

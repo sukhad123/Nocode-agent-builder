@@ -1,5 +1,6 @@
 import { Card, CardBody } from "@heroui/react";
 import CanvaPlayground from "./elements/canva";
+import { AgentProvider } from "./elements/canva/nodes/contexts/agentContext";
 export default function NewAgentPage() {
   return (
     <div>
@@ -12,8 +13,11 @@ export default function NewAgentPage() {
       </section>
       {/* Add your new agent creation form or components here */}
       {/**Canva Design */}
+      <AgentProvider>
+        <CanvaPlayground />
+      </AgentProvider>
 
-      <CanvaPlayground />
+      
     </div>
   );
 }
