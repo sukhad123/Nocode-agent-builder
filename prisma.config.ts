@@ -3,7 +3,7 @@ import "dotenv/config"
 export default defineConfig({
   schema: "./src/db/prisma/schema.prisma",
   migrations: {
-    path: "prisma/migrations",
+    path: "./src/db/prisma/migrations",
   },
   engine: "classic",
   datasource: {
