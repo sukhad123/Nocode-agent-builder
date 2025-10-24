@@ -45,7 +45,7 @@ Build your \textbf{custom AI agents} in minutes—no coding required! Drag, drop
 \begin{enumerate}
     \item \textbf{Clone the repository:}
     \begin{verbatim}
-    git clone https://github.com/*
+    git clone https://github.com/your-username/ai-agent-builder.git
     cd ai-agent-builder
     \end{verbatim}
     \item \textbf{Install dependencies:}
@@ -54,7 +54,8 @@ Build your \textbf{custom AI agents} in minutes—no coding required! Drag, drop
     \end{verbatim}
     \item \textbf{Set up environment variables:} Create a \texttt{.env} file:
     \begin{verbatim}
- 
+    DATABASE_URL=your_database_url
+    OPENAI_API_KEY=your_openai_api_key
     \end{verbatim}
     \item \textbf{Run the app:}
     \begin{verbatim}
