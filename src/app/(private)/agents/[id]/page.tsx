@@ -1,8 +1,7 @@
-{/**Unique Id */}
-//Set all of those values
-export default function UniqueId()
 {
-    return(<>
-    
-    </>)
+  /**Unique Id */
+}
+//Set all of those values
+export default function UniqueId() {
+  return <></>;
 }

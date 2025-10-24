@@ -8,5 +8,5 @@ export default function StoreClose({ onClose }: { onClose: () => void }) {
     setIsClose(onClose);
   }, [onClose, setIsClose]);
 
-  return null; 
+  return null;
 }

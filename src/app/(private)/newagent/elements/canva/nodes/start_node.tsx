@@ -1,4 +1,6 @@
-{/**Start Node */}
+{
+  /**Start Node */
+}
 import { Handle, Position } from "@xyflow/react";
 
 export const StartNode = () => {
@@ -7,7 +9,7 @@ export const StartNode = () => {
       <div className="flex items-center border-2 border-solid border-gray-600 justify-center w-24 h-24 rounded-full shadow-lg">
         Start
       </div>
-            <Handle type="source" position={Position.Right} id="right-handle" />
+      <Handle type="source" position={Position.Right} id="right-handle" />
     </div>
   );
 };

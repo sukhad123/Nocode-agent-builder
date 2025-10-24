@@ -1,11 +1,16 @@
-import { Button } from "@heroui/react"
+import { Button } from "@heroui/react";
 import { useAgent } from "../contexts/agentContext";
 import { addToast } from "@heroui/react";
-export default function SaveNode()
-{
-  const {setOpenaiAPIKey, setSystemParams, isClose, openaiAPIKey, systemParams} = useAgent();
+export default function SaveNode() {
+  const {
+    setOpenaiAPIKey,
+    setSystemParams,
+    isClose,
+    openaiAPIKey,
+    systemParams,
+  } = useAgent();
   //Handle cancel
-  const onCancel =() =>{
+  const onCancel = () => {
     //set all the model to null
     setOpenaiAPIKey("");
     setSystemParams("");
@@ -13,41 +18,40 @@ export default function SaveNode()
     if (isClose) {
       isClose();
     }
-  }
+  };
   //Handle save
-  const onSave =()=>{
+  const onSave = () => {
     //verify all contents exits api key and a system params
-    if(systemParams && openaiAPIKey)
-    {
+    if (systemParams && openaiAPIKey) {
       //all good to do
       if (isClose) {
-      isClose();
-    }
-    }
-    else{
-      if(!openaiAPIKey)
-      {
-          addToast({
-            title: "Enter all Details",
-            description: "Enter your OPENAI API KEY",
-            color:"warning"
-          });
+        isClose();
       }
-      else{
-         addToast({
-            title: "Enter all Details",
-            description: "Enter your System Params for your agent.",
-            color:"warning"
-          });
+    } else {
+      if (!openaiAPIKey) {
+        addToast({
+          title: "Enter all Details",
+          description: "Enter your OPENAI API KEY",
+          color: "warning",
+        });
+      } else {
+        addToast({
+          title: "Enter all Details",
+          description: "Enter your System Params for your agent.",
+          color: "warning",
+        });
       }
-     
+    }
+  };
 
-    }
-  }
-  
-    return(
-      <div className="flex items-center gap-4  justify-center w-full"> 
-    <Button onPress = {onSave} variant="solid" color="primary">Save Agent</Button>
-       <Button  onPress={onCancel} variant="solid" color="danger">Cancel</Button>
-    </div>)
+  return (
+    <div className="flex items-center gap-4  justify-center w-full">
+      <Button onPress={onSave} variant="solid" color="primary">
+        Save Agent
+      </Button>
+      <Button onPress={onCancel} variant="solid" color="danger">
+        Cancel
+      </Button>
+    </div>
+  );
 }

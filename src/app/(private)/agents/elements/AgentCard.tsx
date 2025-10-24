@@ -1,6 +1,6 @@
-import {Card, CardFooter, Image, Button} from "@heroui/react";
+import { Card, CardFooter, Image, Button } from "@heroui/react";
 
-export default function AgentCard({name}:TCardProps) {
+export default function AgentCard({ name }: TCardProps) {
   return (
     <Card isFooterBlurred className="  max-w-[200px] border-none" radius="lg">
       <Image
@@ -19,7 +19,7 @@ export default function AgentCard({name}:TCardProps) {
           size="sm"
           variant="flat"
         >
-         Open AGENT
+          Open AGENT
         </Button>
       </CardFooter>
     </Card>
@@ -27,7 +27,6 @@ export default function AgentCard({name}:TCardProps) {
 }
 
 //type for the card
-type TCardProps ={
-    name:string,
-    
-}
+type TCardProps = {
+  name: string;
+};

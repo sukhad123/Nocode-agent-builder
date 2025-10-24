@@ -4,10 +4,8 @@ import { CustomNodeUI } from "./(private)/newagent/elements/canva/nodes/custom_n
 import { StartNode } from "./(private)/newagent/elements/canva/nodes/start_node";
 export default function Home() {
   return (
-  <div className="flex items-center justify-center h-screen w-full">
-
- <button>Test canva</button>
-</div>
-
+    <div className="flex items-center justify-center h-screen w-full">
+      <button>Test canva</button>
+    </div>
   );
 }

@@ -22,8 +22,6 @@ interface UserProviderProps {
 // Provider component
 export const UserProvider = ({ children, isClose }: UserProviderProps) => {
   return (
-    <UserContext.Provider value={{ isClose }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={{ isClose }}>{children}</UserContext.Provider>
   );
 };
