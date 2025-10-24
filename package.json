@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@heroui/react": "^2.8.5",
+    "@prisma/client": "^6.18.0",
+    "@prisma/extension-accelerate": "^2.0.2",
     "@xyflow/react": "^12.9.0",
     "framer-motion": "^12.23.24",
     "next": "15.5.6",
@@ -26,7 +28,9 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.6",
     "prettier": "3.6.2",
+    "prisma": "^6.18.0",
     "tailwindcss": "^4",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   }
 }
