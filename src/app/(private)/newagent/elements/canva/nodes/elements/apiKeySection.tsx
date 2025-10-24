@@ -9,7 +9,7 @@ import { openAsBlob } from "fs";
 export default function APIInput()
 {
     const {setOpenaiAPIKey, openaiAPIKey} = useAgent();
-    console.log("OPenai keyu", openaiAPIKey)
+    console.log("OPEANI API KEY", openaiAPIKey)
     //Fetch stored from db
  const [apiKeys, setApiKeys] = useState([
   {key: "cat", label: "Cat"},

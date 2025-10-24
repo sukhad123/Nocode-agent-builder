@@ -2,7 +2,7 @@
 {
   /*Canva Playground */
 }
-
+import { availableNodes } from '@/app/constants/availableNodes';
 import {
   useReactFlow,
   Background,
@@ -30,17 +30,12 @@ import { Button } from "@heroui/react";
 import { StartNode } from "./nodes/start_node";
 import { CustomNodeUI } from "./nodes/custom_node_ui";
 import { useState, useCallback } from "react";
-import { useAgent } from './nodes/contexts/agentContext';
+import SaveDeploy from './nodes/elements/save_deploySection';
 
 export default function CanvaPlayground() {
-
-  const {openaiAPIKey,systemParams} = useAgent();
+ 
 //onSave
-const onHandleSave =()=>{
-  //TODO: Handle save logic
-  console.log("Openai API kEY", openaiAPIKey);
-  console.log("System params", systemParams);
-}
+
  //Available Nodes
  const nodeTypes ={
   startNode: StartNode,
@@ -50,11 +45,7 @@ const onHandleSave =()=>{
  const initialNodes: Node[] = [];
   const initialEdges: Edge[] = [];
   //available nodes
-  const availableNodes: Node[] = [
-     { id: 'start', data: { label: 'Start' }, type :'startNode',position: { x: 5, y: 100 } },
-  { id: 'agent', data: { label: 'Agent' }, type :'customNodeUI',position: { x: 5, y: 5 }},
- 
-];
+
 
 const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
@@ -102,10 +93,8 @@ const [nodes, setNodes] = useState<Node[]>(initialNodes);
       </Button>
     ))}
   </div>
-  <div className ="flex gap-4"><Button onPress={onHandleSave}   className = "text-white" color="primary" variant="faded">Save</Button>
-  {/* Deploy button aligned to the end */}
-  <Button color="primary" variant="shadow">Deploy</Button></div>
- 
+  <SaveDeploy/>
+  
 </div>
 
     

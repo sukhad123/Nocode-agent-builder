@@ -6,7 +6,6 @@ import { useState } from "react";
 import { TextUpdaterNode } from "./custom_node_description";
 import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@heroui/react";
 import { Button } from "@heroui/react";
-import { useAgent } from "./contexts/agentContext";
 import StoreClose from "./contexts/storeClose";
 import {
   Modal,
