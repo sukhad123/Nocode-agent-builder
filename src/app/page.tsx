@@ -39,15 +39,16 @@ export default function Home() {
         </h1>
 
         <p className="text-gray-400 max-w-2xl mx-auto mb-12 text-lg md:text-xl leading-relaxed">
-          A dark, intelligent canvas where you design, train, and connect AI nodes —
-          from concept to creation. It’s not just code — it’s collaboration with intelligence.
+          A dark, intelligent canvas where you design, train, and connect AI
+          nodes — from concept to creation. It’s not just code — it’s
+          collaboration with intelligence.
         </p>
 
         <Button
           size="lg"
           radius="full"
-       color="primary"
-       className = "shadow-lg"
+          color="primary"
+          className="shadow-lg"
           onPress={() => (window.location.href = "/signup")}
         >
           Get Started
@@ -69,7 +70,8 @@ export default function Home() {
         transition={{ duration: 1.2, delay: 1 }}
         className="absolute bottom-20 text-gray-500 text-sm tracking-wide"
       >
-        Node Agent Builder © {new Date().getFullYear()} — The Future Codes Itself
+        Node Agent Builder © {new Date().getFullYear()} — The Future Codes
+        Itself
       </motion.p>
     </main>
   );

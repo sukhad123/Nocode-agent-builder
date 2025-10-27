@@ -1,4 +1,4 @@
-"use client"
+"use client";
 {
   /**Render all the available agents from database */
 }
@@ -9,13 +9,13 @@ import { useEffect } from "react";
 export default function Agents() {
   //TODO Fetch all agents fromdb
 
-  useEffect(()=>{
-    const fetchAgent = async ()=>{
+  useEffect(() => {
+    const fetchAgent = async () => {
       const agents = await fetchAllAgent();
       return agents;
-    }
+    };
     fetchAgent();
-  },[])
+  }, []);
   const dummyAgentCards: AgentCard[] = [
     {
       name: "SupportBot",
