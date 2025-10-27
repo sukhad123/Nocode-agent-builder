@@ -9,7 +9,6 @@ export default function AgentPage() {
       <section className="px-150 py-10 flex justify-center">
         <Button>Your Agents </Button>
       </section>
-
       <Agents />
     </div>
   );

@@ -6,6 +6,7 @@ import { getCurrentUser } from "./user";
 
 export const agentRepo = {
   create,
+  fetchByUser
 };
 
 async function create(agentName: string, nodes: TNode[], edges: TEdge[]) {
@@ -49,5 +50,27 @@ async function create(agentName: string, nodes: TNode[], edges: TEdge[]) {
   } catch (error) {
     console.error("Error creating agent:", error);
     return errorResponse("Error while creating the agent");
+  }
+}
+async function fetchByUser(user_id:string)
+{
+  try{
+    const agents = await prismaClient.aGENT.findMany({
+      where:{userId:user_id
+    },
+  include:{
+    nodes:{
+      include:{
+        opeaniNode:true
+      }
+    },
+    edges:true,
+  }})
+
+
+  }catch(error)
+  {
+    console.log(error);
+    return errorResponse("Error on fetching all agents by user")
   }
 }

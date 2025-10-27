@@ -1,11 +1,21 @@
+"use client"
 {
   /**Render all the available agents from database */
 }
+import { fetchAllAgent } from "@/services/agent/fetch_agent";
 import AgentCard from "./AgentCard";
 import { type Node, type Edge } from "@xyflow/react";
+import { useEffect } from "react";
 export default function Agents() {
   //TODO Fetch all agents fromdb
 
+  useEffect(()=>{
+    const fetchAgent = async ()=>{
+      const agents = await fetchAllAgent();
+      return agents;
+    }
+    fetchAgent();
+  },[])
   const dummyAgentCards: AgentCard[] = [
     {
       name: "SupportBot",

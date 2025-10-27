@@ -10,6 +10,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.34.0",
+    "@clerk/themes": "^2.4.29",
     "@heroui/react": "^2.8.5",
     "@prisma/client": "^6.18.0",
     "@prisma/extension-accelerate": "^2.0.2",
