@@ -30,7 +30,6 @@ import { StartNode } from "./nodes/start_node";
 import { CustomNodeUI } from "./nodes/custom_node_ui";
 import { useState, useCallback } from "react";
 import SaveDeploy from "./nodes/elements/save_deploySection";
-
 export default function CanvaPlayground() {
   //onSave
 
@@ -39,6 +38,7 @@ export default function CanvaPlayground() {
     startNode: StartNode,
     customNodeUI: CustomNodeUI,
   };
+
   //TODO:Fetch those from db to display saved agents
   const initialNodes: Node[] = [];
   const initialEdges: Edge[] = [];
@@ -87,7 +87,7 @@ export default function CanvaPlayground() {
               </Button>
             ))}
           </div>
-          <SaveDeploy />
+          <SaveDeploy nodes={nodes} edges={edges} />
         </div>
 
         <ReactFlow

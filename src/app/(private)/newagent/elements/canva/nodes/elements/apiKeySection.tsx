@@ -5,10 +5,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Button } from "@heroui/react";
 import { useAgent } from "../contexts/agentContext";
-import { setLazyProp } from "next/dist/server/api-utils";
-export default  function APIInput() {
+import fetchALLAPIKEYS from "@/services/api_key/fetch_all";
+export default function APIInput() {
   const { setOpenaiAPIKey, openaiAPIKey } = useAgent();
-  const[loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   console.log("OPEANI API KEY", openaiAPIKey);
   //Fetch stored from db
   const [apiKeys, setApiKeys] = useState([
@@ -16,6 +16,30 @@ export default  function APIInput() {
     { key: "dog", label: "Dog" },
     { key: "custom", label: "Create New One" },
   ]);
+  useEffect(() => {
+    async function fetchKeys() {
+      try {
+        setLoading(true);
+        const res = await fetchALLAPIKEYS();
+        //If that's an array
+        if (Array.isArray(res)) {
+          setApiKeys([
+            ...res.map((item) => ({
+              key: item.api_key,
+              label: item.api_key_name,
+            })),
+            { key: "custom", label: "Create New One" },
+          ]);
+        }
+      } catch (error) {
+        console.error("Error fetching API keys:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchKeys();
+  }, []);
 
   const [value, setValue] = useState(openaiAPIKey);
 
@@ -31,7 +55,7 @@ export default  function APIInput() {
   const [credentialName, setCredentialName] = useState<string>("");
   const [credential, setCredential] = useState<string>("");
   //on new openai key submitted
-  const onHandleSubmit =async (e: React.FormEvent<HTMLFormElement>) => {
+  const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     if (apiKeys.some((item) => item.key === credentialName)) {
@@ -40,16 +64,16 @@ export default  function APIInput() {
     setApiKeys((prev) => [...prev, { key: credential, label: credentialName }]);
     setValue(credential);
     setOpenaiAPIKey(credential);
-    console.log("hi")
+    console.log("hi");
     //save data to database
-    try{
+    try {
       //Store the data in our db
-      await createNewAPIKEY({api_key_name:credentialName, api_key:credential});
-
-    }
-    catch(error){
+      await createNewAPIKEY({
+        api_key_name: credentialName,
+        api_key: credential,
+      });
+    } catch (error) {
       console.log(error);
-
     }
 
     //Set everything to default
@@ -109,7 +133,12 @@ export default  function APIInput() {
                 setCredential(e.target.value);
               }}
             />
-            <Button type="submit" isLoading={loading} isDisabled={!btnStatus} color="primary">
+            <Button
+              type="submit"
+              isLoading={loading}
+              isDisabled={!btnStatus}
+              color="primary"
+            >
               {" "}
               Add
             </Button>

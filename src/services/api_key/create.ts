@@ -1,8 +1,9 @@
-"use server"
+"use server";
 import { TAPIKEY } from "@/types/api_key/api_key";
 import { getCurrentUserService } from "../user/get_current_user";
 import { apirepo } from "@/repositories/apikey";
 import { successResponse, errorResponse } from "@/utils/respones";
+import { encrypt } from "@/utils/encrypt_decrypt";
 export default async function createNewAPIKEY({
   api_key_name,
   api_key,
@@ -10,14 +11,14 @@ export default async function createNewAPIKEY({
   //Step 1: Get Current logged in user
   try {
     const user = await getCurrentUserService();
-    if(!user)
-    {
-        return
+    //Step 2: Hash user api key
+    if (!user) {
+      return;
     }
     const data: TAPIKEY = {
       api_key_name: api_key_name,
-      api_key: api_key,
-      userId: user.id!
+      api_key: encrypt(api_key),
+      userId: user.id!,
     };
     const new_api_key = apirepo.create(data);
     return successResponse(new_api_key);

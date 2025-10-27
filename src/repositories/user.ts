@@ -2,7 +2,7 @@
 `userRepo` object. Here's a breakdown of what the code is doing: */
 "use server";
 import prismaClient from "@/db/config";
-import { successResponse,errorResponse } from "@/utils/respones";
+import { successResponse, errorResponse } from "@/utils/respones";
 
 export async function getCurrentUser() {
   try {
@@ -13,8 +13,6 @@ export async function getCurrentUser() {
 
     return user;
   } catch (error: unknown) {
-   console.log(error);
+    console.log(error);
   }
 }
-
-

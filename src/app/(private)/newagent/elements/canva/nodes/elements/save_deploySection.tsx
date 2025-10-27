@@ -1,20 +1,34 @@
 {
   /**Save and Deploy function in canvas */
 }
+import saveAgentService from "@/services/agent/save_agent";
 import { Button } from "@heroui/react";
 import { useAgent } from "../contexts/agentContext";
 import { Modal, ModalContent, useDisclosure } from "@heroui/react";
+import { type Node, type Edge } from "@xyflow/react";
 import { Input } from "@heroui/react";
-export default function SaveDeploy() {
+export default function SaveDeploy({ nodes, edges }: TProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { openaiAPIKey, systemParams, setAgentName, agentName } = useAgent();
   //on save
   const onHandleSave = () => {
     onOpen();
+  };
+  const onHandleSaveAgent = async () => {
     //TODO: Handle save logic
     console.log("Openai API kEY", openaiAPIKey);
     console.log("System params", systemParams);
-    console.log("AGENT ANME", agentName);
+    console.log("AGENT Name", agentName);
+    console.log("NOdes", nodes);
+    console.log("Edges", edges);
+    const agent = await saveAgentService({
+      openaiAPIKey,
+      systemParams,
+      agentName,
+      nodes,
+      edges,
+    });
+    console.log("agne", agent);
   };
   return (
     <>
@@ -47,7 +61,11 @@ export default function SaveDeploy() {
                   setAgentName(e.target.value);
                 }}
               />
-              <Button isDisabled={!agentName} color="primary" onPress={onClose}>
+              <Button
+                onPress={onHandleSaveAgent}
+                isDisabled={!agentName}
+                color="primary"
+              >
                 {" "}
                 Save
               </Button>
@@ -59,3 +77,7 @@ export default function SaveDeploy() {
     </>
   );
 }
+type TProps = {
+  nodes: Node[];
+  edges: Edge[];
+};

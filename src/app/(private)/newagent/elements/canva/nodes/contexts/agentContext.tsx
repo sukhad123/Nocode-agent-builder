@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState, ReactNode, useRef } from "react";
+import { type Node, type Edge } from "@xyflow/react";
 
 interface AgentContextType {
   openaiAPIKey: string;
@@ -10,6 +11,10 @@ interface AgentContextType {
   setAgentName: (name: string) => void;
   isClose?: () => void;
   setIsClose: (fn: () => void) => void;
+  nodes: Node[];
+  setNodes: (key: Node[]) => void;
+  edges: Edge[];
+  setEdges: (key: Edge[]) => void;
 }
 
 const AgentContext = createContext<AgentContextType>({
@@ -21,6 +26,10 @@ const AgentContext = createContext<AgentContextType>({
   setAgentName: () => {},
   isClose: undefined,
   setIsClose: () => {},
+  nodes: [],
+  edges: [],
+  setNodes: () => {},
+  setEdges: () => {},
 });
 
 export const useAgent = () => useContext(AgentContext);
@@ -33,6 +42,8 @@ export const AgentProvider = ({ children }: AgentProviderProps) => {
   const [openaiAPIKey, setOpenaiAPIKey] = useState("");
   const [systemParams, setSystemParams] = useState("");
   const [agentName, setAgentName] = useState("");
+  const [nodes, setNodes] = useState<Node[]>([]);
+  const [edges, setEdges] = useState<Edge[]>([]);
 
   //  useRef for function to avoid re-render loops
   const isCloseRef = useRef<() => void | undefined>(undefined);
@@ -52,6 +63,10 @@ export const AgentProvider = ({ children }: AgentProviderProps) => {
         setAgentName,
         isClose: () => isCloseRef.current?.(),
         setIsClose: handleSetIsClose,
+        nodes,
+        edges,
+        setNodes,
+        setEdges,
       }}
     >
       {children}
