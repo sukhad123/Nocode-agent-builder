@@ -2,6 +2,7 @@
   /**Save and Deploy function in canvas */
 }
 import saveAgentService from "@/services/agent/save_agent";
+import { redirect } from "next/navigation";
 import { Button } from "@heroui/react";
 import { useAgent } from "../contexts/agentContext";
 import { Modal, ModalContent, useDisclosure } from "@heroui/react";
@@ -14,6 +15,13 @@ export default function SaveDeploy({ nodes, edges }: TProps) {
   const onHandleSave = () => {
     onOpen();
   };
+  const onDeploy = async() => {
+    //TODO: Add update logic later
+    const agent  =await onHandleSaveAgent();
+    //TODO: agent deploy service
+    //page to deploy page
+
+    }
   const onHandleSaveAgent = async () => {
     //TODO: Handle save logic
     console.log("Openai API kEY", openaiAPIKey);
@@ -28,8 +36,10 @@ export default function SaveDeploy({ nodes, edges }: TProps) {
       nodes,
       edges,
     });
-    console.log("agne", agent);
-  };
+  console.log("agent", agent);
+  // You can handle the response using the actual properties
+  redirect(`/deploy/${agent}`)
+};
   return (
     <>
       <div className="flex gap-4">
@@ -42,7 +52,7 @@ export default function SaveDeploy({ nodes, edges }: TProps) {
           Save
         </Button>
         {/* Deploy button aligned to the end */}
-        <Button color="primary" variant="shadow">
+        <Button onPress = {onDeploy} color="primary" variant="shadow">
           Deploy
         </Button>
       </div>

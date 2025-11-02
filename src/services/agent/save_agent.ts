@@ -9,7 +9,7 @@
     Step 4 creat agent table */
 }
 
-import { errorResponse } from "@/utils/respones";
+import { errorResponse, successResponse } from "@/utils/respones";
 import get_api_key_by_id from "../api_key/fetch_by_id";
 import { type Node, type Edge } from "@xyflow/react";
 import { opeaniRepo } from "@/repositories/opean_ainode";
@@ -93,8 +93,10 @@ export default async function saveAgentService({
       }
     });
 
-    const agent = await agentRepo.create(agentName, nodesUpdated, edgesUpdated);
-    return agent;
+   const agent= await agentRepo.create(agentName, nodesUpdated, edgesUpdated);
+   return agent;
+  
+  
   } catch (error) {
     //log the error
     console.log(error);

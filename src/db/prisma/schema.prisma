@@ -44,6 +44,7 @@ model AGENT{
     user                USER ?                 @relation(fields: [userId], references: [id],onDelete: Cascade )
     createdAt         DateTime      @default(now())
     lastUpdated       DateTime?     @updatedAt
+    appLink              String?
     nodes NODE[]
     edges EDGE[]
    

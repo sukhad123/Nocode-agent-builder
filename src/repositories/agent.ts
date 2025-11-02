@@ -7,6 +7,7 @@ import { getCurrentUser } from "./user";
 export const agentRepo = {
   create,
   fetchByUser,
+  fetchById
 };
 
 async function create(agentName: string, nodes: TNode[], edges: TEdge[]) {
@@ -46,7 +47,7 @@ async function create(agentName: string, nodes: TNode[], edges: TEdge[]) {
       },
     });
 
-    return successResponse(agent, "Agent created successfully!");
+    return agent.id;
   } catch (error) {
     console.error("Error creating agent:", error);
     return errorResponse("Error while creating the agent");
@@ -70,3 +71,25 @@ async function fetchByUser(user_id: string) {
     return errorResponse("Error on fetching all agents by user");
   }
 }
+async function fetchById(agent_id: string) {
+  try {
+    const agent = await prismaClient.aGENT.findUnique({
+      where: { id: agent_id },
+      include: {
+        nodes: {
+          include: {
+           opeaniNode:{
+            include:{
+              apiKey:true}
+            
+           },
+          },
+        }
+      },
+    });
+   return agent;
+  } catch (error) {
+    console.log(error);
+    return errorResponse("Error on fetching agent by id");
+  }
+} 
