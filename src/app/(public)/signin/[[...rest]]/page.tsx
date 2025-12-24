@@ -1,10 +1,9 @@
-import { SignUp } from "@clerk/nextjs";
+import { SignIn } from "@clerk/nextjs";
 
 export default function Page() {
   return (
     <div className="flex items-center justify-center h-screen w-full">
-
-       <SignUp appearance={{ elements: { card: 'shadow-lg' } }} />
+       <SignIn appearance={{ elements: { card: 'shadow-lg' } }} />
     </div>
   );
 }

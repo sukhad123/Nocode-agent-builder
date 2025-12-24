@@ -1,92 +1,68 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
- // output   = "../generated/client"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-//User Table
-model USER{
-  id                String        @id @default(cuid())
-  email String @unique
-  createdAt         DateTime      @default(now())
-  lastUpdated       DateTime?     @updatedAt
-  apikeys APIKEY[]
-  agents AGENT[]
-  }
 
-//API KEY
-model APIKEY{
-  id                String        @id @default(cuid())
-  api_key_name      String
-  api_key           String        @unique
-  createdAt         DateTime      @default(now())
-  lastUpdated       DateTime?     @updatedAt
-  userId            String?
-  user                USER ?                 @relation(fields: [userId], references: [id],onDelete: Cascade )
-  opeaiNodes OPENAINODE[]
+model USER {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  createdAt   DateTime  @default(now())
+  lastUpdated DateTime? @updatedAt
+  agents      AGENT[]
+  apikeys     APIKEY[]
 }
 
-//AGENT
-model AGENT{
-    id                String        @id @default(cuid())
-    agent_name        String
-    idDeploy          Boolean?
-    userId            String? //User id for relationship
-    user                USER ?                 @relation(fields: [userId], references: [id],onDelete: Cascade )
-    createdAt         DateTime      @default(now())
-    lastUpdated       DateTime?     @updatedAt
-    appLink              String?
-    nodes NODE[]
-    edges EDGE[]
-   
+model APIKEY {
+  id           String       @id @default(cuid())
+  api_key_name String
+  api_key      String       @unique
+  createdAt    DateTime     @default(now())
+  lastUpdated  DateTime?    @updatedAt
+  userId       String?
+  user         USER?        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  opeaiNodes   OPENAINODE[]
 }
 
-//OPENAINODE
-model OPENAINODE{
-  id                String        @id @default(cuid()) 
-  system_params     String
-  model             String
-  createdAt         DateTime      @default(now())
-  lastUpdated       DateTime?     @updatedAt
-  api_key_id        String?
-  apiKey            APIKEY ?                 @relation(fields: [api_key_id], references: [id], onDelete: SetNull)
-  node_id String? @unique
-  node      NODE?   @relation(fields: [node_id], references: [id], onDelete: Cascade)
-
-}
-//NODE
-model NODE{
-    id                String        @id @default(cuid())
-    name_id           String
-    data_label        String
-    type              String
-    position_x        Int
-    position_y        Int
-    createdAt         DateTime      @default(now())
-    lastUpdated       DateTime?     @updatedAt
-    agent_id          String?
-    agent            AGENT ?                 @relation(fields: [agent_id], references: [id], onDelete: Cascade)
-    opeaniNode OPENAINODE?
-
+model AGENT {
+  id          String    @id @default(cuid())
+  agent_name  String
+  idDeploy    Boolean?  @default(false)
+  userId      String?
+  createdAt   DateTime  @default(now())
+  lastUpdated DateTime? @updatedAt
+  appLink     String?
+  user        USER?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  EDGE        Json
+  nodes       NODE[]
 }
 
-//EDGE
-model EDGE{
-   id                String        @id @default(cuid())
-   edge_id           String
-   source            String
-   target            String
-   createdAt         DateTime      @default(now())
-   lastUpdated       DateTime?     @updatedAt
-   agent_id          String?
-   agent            AGENT ?                 @relation(fields: [agent_id], references: [id], onDelete: Cascade)
+model OPENAINODE {
+  id            String    @id @default(cuid())
+  system_params String
+  model         String
+  createdAt     DateTime  @default(now())
+  lastUpdated   DateTime? @updatedAt
+  api_key_id    String?
+  node_id       String?   @unique
+  apiKey        APIKEY?   @relation(fields: [api_key_id], references: [id])
+  node          NODE?     @relation(fields: [node_id], references: [id], onDelete: Cascade)
 }
+
+model NODE {
+  id          String      @id @default(cuid())
+  name_id     String
+  data_label  String
+  type        String
+  position_x  Int
+  position_y  Int
+  createdAt   DateTime    @default(now())
+  lastUpdated DateTime?   @updatedAt
+  agent_id    String?
+  agent       AGENT?      @relation(fields: [agent_id], references: [id], onDelete: Cascade)
+  opeaniNode  OPENAINODE?
+}
+

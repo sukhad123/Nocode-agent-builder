@@ -1,14 +1,16 @@
 "use client";
 
-import { Button, Card, CardBody, CardHeader } from "@heroui/react";
+import { Button, Card, CardBody, CardHeader, User } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { UserButton } from '@clerk/nextjs'
 
 export default function Dashboard() {
   const router = useRouter();
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-[#0a0a0a] text-white">
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -35,6 +37,7 @@ export default function Dashboard() {
             >
               Create New Agent
             </Button>
+                  <UserButton  afterSignOutUrl="/" />
 
             <Button
               color="secondary"

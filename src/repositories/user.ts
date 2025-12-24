@@ -16,3 +16,19 @@ export async function getCurrentUser() {
     console.log(error);
   }
 }
+
+export async function createNewUser(userEmail: string) {
+  //check the user if exists
+  const user = await prismaClient.uSER.findUnique({
+      where: { email:userEmail },
+    });
+    if(!user)
+    {
+      const user = await prismaClient.uSER.create({
+        data: {
+          email: userEmail,
+        },
+      });
+      return successResponse("User created successfully");
+    }
+}
