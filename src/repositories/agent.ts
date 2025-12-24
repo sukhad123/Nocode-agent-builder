@@ -37,13 +37,11 @@ async function create(agentName: string, nodes: TNode[], edges: TEdge[]) {
           }),
         },
 
-        edges: {
-          create: edges,
-        },
+        EDGE: edges,
       },
       include: {
         nodes: true,
-        edges: true,
+        
       },
     });
 
@@ -63,7 +61,7 @@ async function fetchByUser(user_id: string) {
             opeaniNode: true,
           },
         },
-        edges: true,
+ 
       },
     });
   } catch (error) {
