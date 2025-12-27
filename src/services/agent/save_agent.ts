@@ -14,7 +14,6 @@ import get_api_key_by_id from "../api_key/fetch_by_id";
 import { type Node, type Edge } from "@xyflow/react";
 import { opeaniRepo } from "@/repositories/opean_ainode";
 import { TNode } from "@/types/nodes/node";
-import { TEdge } from "@/types/edge/edge";
 import { agentRepo } from "@/repositories/agent";
 import { type TOpenAINode } from "@/types/opeani_node/openai_node";
 type TPros = {
@@ -42,15 +41,7 @@ export default async function saveAgentService({
   }
   try {
     const nodesUpdated: TNode[] = [];
-    const edgesUpdated: TEdge[] = [];
-    edges.map((edge) => {
-      const tempData: TEdge = {
-        edge_id: edge.id,
-        source: edge.source,
-        target: edge.target,
-      };
-      edgesUpdated.push(tempData);
-    });
+     
 
     //Step 1: Fetch by id
     const api_key = await get_api_key_by_id(openaiAPIKey);
@@ -93,8 +84,7 @@ export default async function saveAgentService({
       }
     });
 
-   const agent= await agentRepo.create(agentName, nodesUpdated, edgesUpdated);
-   return agent;
+   return await agentRepo.create(agentName, nodesUpdated, edges);
   
   
   } catch (error) {

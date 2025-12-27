@@ -37,8 +37,9 @@ export default function SaveDeploy({ nodes, edges }: TProps) {
       edges,
     });
   console.log("agent", agent);
+  //TODO: Button should load until save agent service is done loading
   // You can handle the response using the actual properties
-  redirect(`/deploy/${agent}`)
+  //redirect(`/deploy/${agent}`)
 };
   return (
     <>

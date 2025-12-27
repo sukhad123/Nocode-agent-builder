@@ -1,8 +1,11 @@
 import prismaClient from "@/db/config";
+import { Prisma } from "@prisma/client";
+
 import { errorResponse, successResponse } from "@/utils/respones";
 import { type TNode } from "@/types/nodes/node";
-import { type TEdge } from "@/types/edge/edge";
+import {type Edge} from "@xyflow/react";
 import { getCurrentUser } from "./user";
+ 
 
 export const agentRepo = {
   create,
@@ -10,7 +13,7 @@ export const agentRepo = {
   fetchById
 };
 
-async function create(agentName: string, nodes: TNode[], edges: TEdge[]) {
+async function create(agentName: string, nodes: TNode[], edges: Edge[]) {
   try {
     const user = await getCurrentUser();
 
@@ -37,7 +40,7 @@ async function create(agentName: string, nodes: TNode[], edges: TEdge[]) {
           }),
         },
 
-        EDGE: edges,
+      EDGE: edges as unknown as Prisma.InputJsonValue,
       },
       include: {
         nodes: true,
@@ -53,17 +56,17 @@ async function create(agentName: string, nodes: TNode[], edges: TEdge[]) {
 }
 async function fetchByUser(user_id: string) {
   try {
-    const agents = await prismaClient.aGENT.findMany({
-      where: { userId: user_id },
-      include: {
-        nodes: {
+    return await prismaClient.aGENT.findMany({
+          where: { userId: user_id },
           include: {
-            opeaniNode: true,
+            nodes: {
+              include: {
+                opeaniNode: true,
+              },
+            },
+     
           },
-        },
- 
-      },
-    });
+        });
   } catch (error) {
     console.log(error);
     return errorResponse("Error on fetching all agents by user");

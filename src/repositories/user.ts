@@ -3,15 +3,20 @@
 "use server";
 import prismaClient from "@/db/config";
 import { successResponse, errorResponse } from "@/utils/respones";
+import { currentUser } from '@clerk/nextjs/server'
 
 export async function getCurrentUser() {
+  //Retrieve the current user from Clerk
+  const curr_user  = await currentUser();
+  if(!curr_user)
+  {
+    return null;
+  }
   try {
     /** Demo user for now */
-    const user = await prismaClient.uSER.findUnique({
-      where: { email: "sukhadadhikari3@gmail.com" },
-    });
-
-    return user;
+    return await prismaClient.uSER.findUnique({
+          where: { email: curr_user.emailAddresses[0]?.emailAddress},
+        });
   } catch (error: unknown) {
     console.log(error);
   }
