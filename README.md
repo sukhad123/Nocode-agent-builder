@@ -15,6 +15,8 @@ A **Next.js** + **TypeScript** project for building AI agents with **LangChain**
 - **Scalable**: Designed to grow with multiple agents and workflows.
 
 ---
+![Screenshot](./public/Images/agent_demo.png)
+
 
 
 
