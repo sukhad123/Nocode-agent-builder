@@ -19,7 +19,7 @@ export default function Agents() {
 
   //Handle onClick for each agent
   const onClickAgent = (agentId: string) => {
-    console.log("Clicked agent with ID:", agentId);
+    
     //TODO Navigate to agent detail page or load agent details
   }
  useEffect(() => {
@@ -31,6 +31,7 @@ export default function Agents() {
       name: agent.agent_name,
     })) : [];
     setSimplifiedAgents(simplified);
+   
   };
 
   fetchAgents();
@@ -40,7 +41,7 @@ export default function Agents() {
   return (
     <div className="m-22 p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 p-4 gap-4 border-2 border-solid rounded-xl border-indigo-500/50 ">
       {simplifiedAgents.map((agent) => (
-        <div onClick= {() => onClickAgent(agent.id)}key={agent.name}>
+        <div onClick= {() => onClickAgent(agent.id)}key={agent.id}>
           <AgentCard name={agent.name} />
         </div>
       ))}

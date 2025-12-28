@@ -3,7 +3,6 @@
 import { Button, Card, CardBody, CardHeader, User } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { UserButton } from '@clerk/nextjs'
 
 export default function Dashboard() {
   const router = useRouter();
@@ -37,7 +36,7 @@ export default function Dashboard() {
             >
               Create New Agent
             </Button>
-                  <UserButton  afterSignOutUrl="/" />
+               
 
             <Button
               color="secondary"

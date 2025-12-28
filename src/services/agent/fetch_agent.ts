@@ -7,19 +7,21 @@ import { agentRepo } from "@/repositories/agent";
 export async function fetchAllAgent() {
   //Step 1: Get current user
   //Step 2: Fetch all agents for that user
-  try{
-  const user = await getCurrentUser();
-  if (!user) {
-    return;
+  try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return;
+    }
+    const agents = await agentRepo.fetchByUser(user.id);
+    console.log;
+    return agents;
+  } catch (error) {
+    console.error("Error in fetch all agents service", error);
   }
-  const agents = await agentRepo.fetchByUser(user.id);
-  return agents;
-}catch(error)
+}
 {
-  console.error("Error in fetch all agents service", error);
+  /** Fetch agent by ID */
 }
-}
-{/** Fetch agent by ID */}
 export async function fetchAgentById(agentId: string) {
   try {
     const user = await getCurrentUser();
@@ -30,4 +32,4 @@ export async function fetchAgentById(agentId: string) {
   } catch (error) {
     console.error("Error in fetch agent by ID service", error);
   }
-} 
+}
