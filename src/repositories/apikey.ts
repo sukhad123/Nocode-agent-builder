@@ -12,7 +12,7 @@ async function create(apiKeyData: TAPIKEY) {
     const api_key = await prismaClient.aPIKEY.create({
       data: apiKeyData,
     });
-    return successResponse(api_key);
+    return api_key
   } catch (error) {
     //Log the error
     console.log(error);

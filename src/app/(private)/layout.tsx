@@ -21,7 +21,9 @@ export default async function PrivateLayout({
     await createOrUpsertUserService(primaryEmail)
   }
 
-  return <main>
-  <PrivateNavbar />
-  {children}</main>
+return (
+  <PrivateNavbar>
+    {children}
+  </PrivateNavbar>
+)
 }

@@ -6,9 +6,7 @@ export default function NewAgentPage() {
   
   return (
     <div>
-      <section className="px-150 py-10 flex justify-center">
-        <Button>Create new Agent</Button>
-      </section>
+   
 
       {/* Add your new agent creation form or components here */}
       {/**Canva Design */}

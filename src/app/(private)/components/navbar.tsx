@@ -13,6 +13,7 @@ import {
   Avatar,
 } from "@heroui/react";
 import { UserButton } from '@clerk/nextjs'
+import React from "react";
 
 export const AcmeLogo = () => {
   return (
@@ -27,12 +28,13 @@ export const AcmeLogo = () => {
   );
 };
 
-export default function PrivateNavbar() {
+export default function PrivateNavbar({children}: {children: React.ReactNode}) {
   return (
+    <>
     <Navbar>
       <NavbarBrand>
         <AcmeLogo />
-        <Link  href="/dashboard">
+        <Link className="font-bold text-inherit" href="/dashboard">
         <p className="font-bold text-inherit">No Code Agent Builder</p></Link> 
       </NavbarBrand>
 
@@ -46,5 +48,11 @@ export default function PrivateNavbar() {
        <UserButton  afterSignOutUrl="/" />
       </NavbarContent>
     </Navbar>
+     
+<main className="">
+  {/* body content aligned with navbar */}
+  {children}
+</main>
+    </>
   );
 }

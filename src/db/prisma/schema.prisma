@@ -17,14 +17,15 @@ model USER {
 }
 
 model APIKEY {
-  id           String       @id @default(cuid())
-  api_key_name String
-  api_key      String       @unique
-  createdAt    DateTime     @default(now())
-  lastUpdated  DateTime?    @updatedAt
-  userId       String?
-  user         USER?        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  opeaiNodes   OPENAINODE[]
+  id                String             @id @default(cuid())
+  api_key_name      String
+  api_key           String             @unique
+  createdAt         DateTime           @default(now())
+  lastUpdated       DateTime?          @updatedAt
+  userId            String?
+  user              USER?              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nonTechnicalNodes NONTECHNICALNODE[]
+  opeaiNodes        OPENAINODE[]
 }
 
 model AGENT {
@@ -35,8 +36,8 @@ model AGENT {
   createdAt   DateTime  @default(now())
   lastUpdated DateTime? @updatedAt
   appLink     String?
-  user        USER?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   EDGE        Json
+  user        USER?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   nodes       NODE[]
 }
 
@@ -65,4 +66,12 @@ model NODE {
   agent       AGENT?      @relation(fields: [agent_id], references: [id], onDelete: Cascade)
   opeaniNode  OPENAINODE?
 }
-
+model NONTECHNICALNODE {
+  id              String    @id @default(cuid())
+  additional_info String?
+  apiKeyId        String?
+  createdAt       DateTime  @default(now())
+  lastUpdated     DateTime? @updatedAt
+  name            String
+  apiKey          APIKEY?   @relation(fields: [apiKeyId], references: [id])
+}
