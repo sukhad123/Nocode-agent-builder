@@ -5,7 +5,7 @@ import { Modal, ModalContent, useDisclosure } from "@heroui/react";
 import { Input } from "@heroui/react";
 import { useState } from "react";
 import ToastError from "@/app/components/(private)/Toast/toast_error";
-import updatedNodeCreateAgent from "@/services/updatedNodeService/updatedNodeCreateagent";
+import nodeGenerationParentService from "@/services/updatedNodeService/node_generation_parent";
 export default function NewAgentCreateButton() {
     const {setAgentName,openaiAPIKey, additionalContent, websiteLink, agentName} = useAgent();
     //button loading
@@ -43,7 +43,7 @@ export default function NewAgentCreateButton() {
     //save to db
     const savetoDB = async () => {
         //Store to db
-        await updatedNodeCreateAgent({
+        await nodeGenerationParentService({
             openaiAPIKey,
             additionalContent,  
             name:agentName, 
