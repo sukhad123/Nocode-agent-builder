@@ -35,16 +35,21 @@ export default function NewAgentCreateButton() {
         //logic to create agent
         //check if all exists if not there is a problem
        
+        
+       
+        //TODO: Move to somewhere else after creation
+    }
+    
+    //save to db
+    const savetoDB = async () => {
         //Store to db
         await updatedNodeCreateAgent({
             openaiAPIKey,
             additionalContent,  
-            name:agentName});
+            name:agentName, 
+            website_url: websiteLink});
         setButtonLoading(false);
-        //TODO: Move to somewhere else after creation
     }
-    
-    
 
 
    
@@ -62,14 +67,19 @@ export default function NewAgentCreateButton() {
                 variant="bordered"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setAgentName(e.target.value);
+                  console.log('Agent Name:', agentName);
                 }}
               />
               <Button
-                 onPress={() => {
+                 onPress={async () => {
                     setButtonLoading(true);
+                     //Store to db
+                    await savetoDB();
+                    setButtonLoading(false);
                     onClose();
                  }}
                 isDisabled={!agentName}
+                isLoading={buttonLoading}
                 color="primary"
                 
               >

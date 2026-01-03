@@ -11,9 +11,11 @@ export const updated_agent_repo = {
 async function create(
   openaiAPIKey: string,
   additionalContent: string,
-  name: string
+  name: string,
+  website_url: string
 ) {
   try {
+   
     const user = await getCurrentUser();
     if (!user) {
       throw new Error("User not found");
@@ -31,6 +33,10 @@ async function create(
         name: name,
         apiKey: {
           connect: { id: api_key.id },
+        },
+        website_url: website_url,
+        user: {
+          connect: { id: user.id },
         },
       },
     });

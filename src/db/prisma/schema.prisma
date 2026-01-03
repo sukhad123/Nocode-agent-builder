@@ -8,12 +8,13 @@ datasource db {
 }
 
 model USER {
-  id          String    @id @default(cuid())
-  email       String    @unique
-  createdAt   DateTime  @default(now())
-  lastUpdated DateTime? @updatedAt
-  agents      AGENT[]
-  apikeys     APIKEY[]
+  id                String             @id @default(cuid())
+  email             String             @unique
+  createdAt         DateTime           @default(now())
+  lastUpdated       DateTime?          @updatedAt
+  agents            AGENT[]
+  apikeys           APIKEY[]
+  nonTechnicalNodes NONTECHNICALNODE[]
 }
 
 model APIKEY {
@@ -66,6 +67,7 @@ model NODE {
   agent       AGENT?      @relation(fields: [agent_id], references: [id], onDelete: Cascade)
   opeaniNode  OPENAINODE?
 }
+
 model NONTECHNICALNODE {
   id              String    @id @default(cuid())
   additional_info String?
@@ -73,5 +75,8 @@ model NONTECHNICALNODE {
   createdAt       DateTime  @default(now())
   lastUpdated     DateTime? @updatedAt
   name            String
+  website_url     String?
+  userId          String?
   apiKey          APIKEY?   @relation(fields: [apiKeyId], references: [id])
+  user            USER?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
