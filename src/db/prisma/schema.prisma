@@ -77,6 +77,7 @@ model NONTECHNICALNODE {
   name            String
   website_url     String?
   userId          String?
+  web_scrape_data String?
   apiKey          APIKEY?   @relation(fields: [apiKeyId], references: [id])
   user            USER?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -12,7 +12,8 @@ async function create(
   openaiAPIKey: string,
   additionalContent: string,
   name: string,
-  website_url: string
+  website_url: string,
+  web_scrape_data: string
 ) {
   try {
    
@@ -38,6 +39,7 @@ async function create(
         user: {
           connect: { id: user.id },
         },
+        web_scrape_data: web_scrape_data,
       },
     });
     console.log("Updated Node created:", updatedNode);

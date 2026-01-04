@@ -1,11 +1,24 @@
-"use server"
-{/** Node Service Implementation_Create*/}
+"use server";
+{
+  /** Node Service Implementation_Create*/
+}
 import { updated_agent_repo } from "../../repositories/udpatedNode/node";
 //service to create updated node
-export default async function updatedNodeCreateAgent({openaiAPIKey, additionalContent, name, website_url}:TProps)
-{
-    const {create} = updated_agent_repo;
-    return await create(openaiAPIKey, additionalContent, name, website_url);
+export default async function updatedNodeCreateAgent({
+  openaiAPIKey,
+  additionalContent,
+  name,
+  website_url,
+  web_scrape_data,
+}: TProps) {
+  const { create } = updated_agent_repo;
+  return await create(
+    openaiAPIKey,
+    additionalContent,
+    name,
+    website_url,
+    web_scrape_data
+  );
 }
 //Service Props
 type TProps = {
@@ -13,4 +26,5 @@ type TProps = {
   additionalContent: string;
   name: string;
   website_url: string;
+  web_scrape_data: string;
 };
