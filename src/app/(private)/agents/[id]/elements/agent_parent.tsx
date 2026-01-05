@@ -59,7 +59,7 @@ export default function AgentParentComponent() {
   <div className="flex flex-col h-screen max-w-md mx-auto p-4">
       {/* Chat feed */}
       <div className="flex-1 flex flex-col gap-2 overflow-y-auto border p-2 rounded-md bg-gray-50">
-        {messages.map((msg: any, idx:any) => (
+        {messages.map((msg, idx) => (
           <Card
             key={idx}
             className={`max-w-xs break-words p-2 ${
