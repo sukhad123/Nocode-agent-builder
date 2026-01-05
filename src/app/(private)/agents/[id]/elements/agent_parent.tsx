@@ -4,7 +4,6 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { buildAgentContext } from "@/services/updatedNodeService/backend_context/agent_build_agent_context";
 ;
-import  Agent  from "@/services/updatedNodeService/agent/agent_build_init";
 //TODO: Refined inupt
 import React, { useState, useRef } from "react";
 import { Card, CardBody,Input, Button } from "@heroui/react";
@@ -44,7 +43,7 @@ export default function AgentParentComponent() {
     // Add user message
     setMessages((prev) => [...prev, { sender: "user", text: input }]);
     setInput("");
-    const res = await Agent({agentId:id, message:input});
+    //const res = await Agent({agentId:id, message:input});
 
     // Fake agent reply (replace with your AI call)
     setTimeout(() => {

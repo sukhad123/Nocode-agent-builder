@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { buildAgentContext } from "@/services/updatedNodeService/backend_context/agent_build_agent_context";
 ;
-import  Agent  from "@/services/updatedNodeService/agent/agent_build_init";
+import processagentmessageServerfunction from "@/services/updatedNodeService/agent/agent_process";
 //TODO: Refined inupt
 import React, { useState, useRef } from "react";
 import { Card, CardBody,Input, Button } from "@heroui/react";
@@ -12,15 +12,7 @@ export default function AgentParentComponent() {
   const params = useParams<{ id: string }>()
   //Retrieve the id from params
   const { id } = params;
-  //Fetch the details
-  useEffect(() => {
-// sourcery skip: avoid-function-declarations-in-blocks
-//TODO: Cache the details to avoid multiple calls for the same id
-    async function fetchDetails() {
-      const  res = await buildAgentContext(id);
-    }
-    fetchDetails();
-  }, []);
+  
 
   //TODO: TO be refined
   type Message = {
@@ -44,7 +36,7 @@ export default function AgentParentComponent() {
     // Add user message
     setMessages((prev) => [...prev, { sender: "user", text: input }]);
     setInput("");
-    const res = await Agent({agentId:id, message:input});
+    const res = await processagentmessageServerfunction(id, input);
 
     // Fake agent reply (replace with your AI call)
     setTimeout(() => {
