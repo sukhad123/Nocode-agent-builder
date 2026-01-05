@@ -44,7 +44,7 @@ export default function PrivateNavbar({children}: {children: React.ReactNode}) {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent as="div" justify="end">
+      <NavbarContent as="div" justify="end" suppressHydrationWarning>
        <UserButton  afterSignOutUrl="/" />
       </NavbarContent>
     </Navbar>

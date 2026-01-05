@@ -1,3 +1,4 @@
+
 {/**Create Button */}
 import { Button } from "@heroui/react";
 import { useAgent } from "../../contexts/nodeContext";
@@ -6,12 +7,13 @@ import { Input } from "@heroui/react";
 import { useState } from "react";
 import ToastError from "@/app/components/(private)/Toast/toast_error";
 import nodeGenerationParentService from "@/services/updatedNodeService/node_generation_parent";
+import { redirect } from "next/navigation";
 export default function NewAgentCreateButton() {
     const {setAgentName,openaiAPIKey, additionalContent, websiteLink, agentName} = useAgent();
     //button loading
     const [buttonLoading, setButtonLoading] = useState(false);
       const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+     
     //handle on click
     const handleOnClick = async () => {
         //Check website and api key
@@ -43,12 +45,20 @@ export default function NewAgentCreateButton() {
     //save to db
     const savetoDB = async () => {
         //Store to db
-        await nodeGenerationParentService({
+        const res= await nodeGenerationParentService({
             openaiAPIKey,
             additionalContent,  
             name:agentName, 
             website_url: websiteLink});
+        console.log(res);
         setButtonLoading(false);
+       
+        // if(res.success){
+        //   redirect("/agents/" + (res as { success: boolean; message: string; data: string }).data!);
+
+        // }
+
+        
     }
 
 

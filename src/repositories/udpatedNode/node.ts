@@ -1,3 +1,4 @@
+
 {
   /** Node Repository Implementation */
 }
@@ -5,6 +6,7 @@ import prismaClient from "@/db/config";
 import { getCurrentUser } from "../user";
 export const updated_agent_repo = {
   create,
+  getById
 };
 
 //create new updated agent
@@ -47,4 +49,20 @@ async function create(
   } catch (error) {
     console.log(error);
   }
+}
+
+async function getById(id: string) {
+  try {
+    const updatedNode = await prismaClient.nONTECHNICALNODE.findUnique({
+      where: { id },
+      include:{
+        apiKey:true,
+      }
+    });
+    console.log("Fetched Updated Node:", updatedNode);
+
+    return updatedNode;
+  } catch (error) {
+    console.log(error);
+  } 
 }
