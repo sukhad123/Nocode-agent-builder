@@ -7,7 +7,7 @@ import { buildAgentContext } from "@/services/updatedNodeService/backend_context
 import  Agent  from "@/services/updatedNodeService/agent/agent_build_init";
 //TODO: Refined inupt
 import React, { useState, useRef } from "react";
-import { Card, Input, Button } from "@heroui/react";
+import { Card, CardBody,Input, Button } from "@heroui/react";
 export default function AgentParentComponent() {
   const params = useParams<{ id: string }>()
   //Retrieve the id from params
@@ -56,33 +56,38 @@ export default function AgentParentComponent() {
   };
   
   return(<>
-  <div className="flex flex-col h-screen max-w-md mx-auto p-4">
+ <div className="flex flex-col max-w-md mx-auto p-4 bg-[#121212] text-white">
       {/* Chat feed */}
-      <div className="flex-1 flex flex-col gap-2 overflow-y-auto border p-2 rounded-md bg-gray-50">
+      <div className="flex-1 flex flex-col gap-3 p-3 rounded-xl bg-gradient-to-b from-[#1F1F1F]/70 via-[#1A1A1A]/50 to-[#121212]/90 shadow-xl overflow-y-auto backdrop-blur-sm border border-[#333] overflow-x-auto ">
         {messages.map((msg, idx) => (
           <Card
             key={idx}
-            className={`max-w-xs break-words p-2 ${
+            className={`max-w-xs break-words p-1 rounded-xl ${
               msg.sender === "user"
-                ? "bg-blue-500 text-white self-end"
-                : "bg-gray-200 text-black self-start"
-            }`}
+                ? "bg-blue-600/70 text-white self-end backdrop-blur-md shadow-lg"
+                : "bg-gray-700/60 text-white self-start backdrop-blur-md shadow-md"
+            } transition-all duration-200 hover:scale-105`}
           >
-             {msg.text} 
+            <CardBody className="whitespace-pre-wrap">{msg.text}</CardBody>
           </Card>
         ))}
         <div ref={chatEndRef} />
       </div>
 
       {/* Input box */}
-      <div className="flex gap-2 mt-2">
+      <div className="flex gap-2 mt-3">
         <Input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message..."
-          className="flex-1"
+          
         />
-        <Button onClick={handleSend}>Send</Button>
+        <Button
+          onPress={handleSend}
+          color="primary"
+        >
+          Send
+        </Button>
       </div>
     </div>
   </>);
