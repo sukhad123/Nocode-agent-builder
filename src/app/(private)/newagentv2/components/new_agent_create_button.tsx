@@ -5,7 +5,7 @@ import { useAgent } from "../../contexts/nodeContext";
 import { Modal, ModalContent, useDisclosure } from "@heroui/react";
 import { Input } from "@heroui/react";
 import { useState } from "react";
-import ToastError from "@/app/components/(private)/Toast/toast_error";
+import ToastDisplay from "@/app/components/(private)/Toast/toast_error";
 import nodeGenerationParentService from "@/services/updatedNodeService/node_generation_parent";
 import { redirect } from "next/navigation";
 export default function NewAgentCreateButton() {
@@ -18,7 +18,7 @@ export default function NewAgentCreateButton() {
     const handleOnClick = async () => {
         //Check website and api key
         if(!openaiAPIKey){
-            ToastError({
+            ToastDisplay({
                 title: "Enter all Details",
                 description: "Enter your OPENAI API KEY",
                 color: "danger"
@@ -26,7 +26,7 @@ export default function NewAgentCreateButton() {
             return;
         }
         if(!websiteLink){
-            ToastError({
+            ToastDisplay({
                 title: "Enter all Details", 
                 description: "Enter your Website link",
                 color: "danger"

@@ -1,11 +1,21 @@
-//Structured Success Response
-export const successResponse = (data: unknown, message = "Success") => ({
+export type ApiResponse<T> = {
+  success: boolean;
+  message: string;
+  data?: T;
+};
+
+export const successResponse = <T>(
+  data: T,
+  message = "Success"
+): ApiResponse<T> => ({
   success: true,
   message,
   data,
 });
-//Structured Error Response
-export const errorResponse = (message = "Something went wrong") => ({
+
+export const errorResponse = (
+  message = "Something went wrong"
+): ApiResponse<null> => ({
   success: false,
   message,
 });

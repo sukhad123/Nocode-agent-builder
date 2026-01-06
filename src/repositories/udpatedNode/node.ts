@@ -6,7 +6,9 @@ import prismaClient from "@/db/config";
 import { getCurrentUser } from "../user";
 export const updated_agent_repo = {
   create,
-  getById
+  getById, 
+  getAllByUserId,
+  deleteById
 };
 
 //create new updated agent
@@ -65,4 +67,32 @@ async function getById(id: string) {
   } catch (error) {
     console.log(error);
   } 
+}
+//GET ALL USER AGENTS
+async function getAllByUserId(userId: string) {
+  try {
+    const updatedNodes = await prismaClient.nONTECHNICALNODE.findMany({
+      where: { userId },
+      include:{
+        apiKey:true,
+      }
+    });
+    console.log("Fetched all Updated Nodes for user:", updatedNodes);
+    return updatedNodes;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//Delete agent by ID
+async function deleteById(agentId: string) {
+  try {
+    const deletedNode = await prismaClient.nONTECHNICALNODE.delete({
+      where: { id: agentId },
+    });
+    console.log("Deleted Updated Node:", deletedNode);
+    return deletedNode;
+  } catch (error) {
+    console.log(error);
+  }
 }

@@ -37,14 +37,16 @@ export default function AgentParentComponent() {
     setMessages((prev) => [...prev, { sender: "user", text: input }]);
     setInput("");
     const res = await processagentmessageServerfunction(id, input);
-
+    console.log("Agent response:", res);
     // Fake agent reply (replace with your AI call)
+    if(res.success){
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
-        { sender: "agent", text: String(res || "") },
+        { sender: "agent", text: String(res.data! ?? "") },
       ]); 
     }, 500);
+  }
   };
   
   return(<>
