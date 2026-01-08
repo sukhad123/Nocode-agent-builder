@@ -34,7 +34,7 @@ Designed for **non-technical users**, this flow shows how easy it is to create A
 
 See the full step-by-step tutorial in action:
 
-[![Watch the demo](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID)  
+[![Watch the demo](https://www.youtube.com/watch?v=CGkix6SMY-4) ] 
 *Click the image to watch the video on YouTube.*
 
 ---
