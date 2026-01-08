@@ -57,7 +57,7 @@ Here are some agents created using this application:
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/ai-agent-builder.git
+git clone https://github.com/sukhad123/Nocode-agent-builder.git
 
 # Install dependencies
 npm install
