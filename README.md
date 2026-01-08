@@ -15,15 +15,15 @@ A **Next.js** + **TypeScript** project for building AI agents with **LangChain**
 - **Scalable**: Designed to grow with multiple agents and workflows.
 
 ---
-![Simpler flow for non-technical users](./public/Images/create_agent.png)
-*This screenshot shows the simplified agent creation flow for non-technical users.*
+![Simpler flow for non-technical users](./public/Images/create_agnet.png)
+
 ![Original flow](./public/Images/agent_demo.png)
 
 
 ---
 ## Created Agents
 
-Here are some example agents you can try:
+Here are some example agents created from this application:
 
 ### 1. Stan Agent
 ![Stan Agent Screenshot](./public/Images/demo_image_stan.png)  
