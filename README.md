@@ -45,11 +45,11 @@ Here are some agents created using this application:
 
 ### 1. Stan Agent
 ![Stan Agent Screenshot](./public/Images/demo_image_stan.png)  
-[Try Stan Agent](https://www.stan.store/)
+[Try Stan Agent](http://localhost:3000/deploy/cmk4yx7900001i2twg0ubi387)
 
 ### 2. Koho Agent
 ![Koho Agent Screenshot](./public/Images/demo_image_koho.png)  
-[Try Koho Agent](https://www.koho.ca/)
+[Try Koho Agent](https://nocode-agent-builder.vercel.app/deploy/cmk4z42030000ib04v7danrym)
 
 ---
 
