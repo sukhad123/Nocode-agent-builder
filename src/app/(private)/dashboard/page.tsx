@@ -32,7 +32,7 @@ export default function Dashboard() {
               size="lg"
               variant="shadow"
               className="rounded-xl font-medium"
-              onPress={() => router.push("/newagent")}
+              onPress={() => router.push("/newagentv2")}
             >
               Create New Agent
             </Button>

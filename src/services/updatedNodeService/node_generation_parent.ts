@@ -29,10 +29,11 @@ export default async function nodeGenerationParentService({
       website_url,
       web_scrape_data: scrapedData,
     });
-    return successResponse({
-      data: updatedNode?.id ?? "",
-      message: "Updated Node created successfully",
-    });
+    // return successResponse({
+    //   data: updatedNode?.id ?? "",
+    //   message: "Updated Node created successfully",
+    // });
+    return updatedNode?.id;
   } catch (err) {
     return errorResponse(
       "Updated Node service generation failed at node_generation_parent"

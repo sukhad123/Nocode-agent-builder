@@ -6,7 +6,7 @@ import firecrawlClient from "@/lib/firecrawl";
 export default async function fireCrawlscraper({url}: TProps) {
   const firecrawl = await firecrawlClient();
   const res = await firecrawl.crawlUrl(url, {
-    limit: 50,
+    limit: 5,
     scrapeOptions: {
       formats: ["markdown"],
     },

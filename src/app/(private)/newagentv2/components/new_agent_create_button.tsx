@@ -50,13 +50,14 @@ export default function NewAgentCreateButton() {
             additionalContent,  
             name:agentName, 
             website_url: websiteLink});
-        console.log(res);
+     
         setButtonLoading(false);
        
-        // if(res.success){
-        //   redirect("/agents/" + (res as { success: boolean; message: string; data: string }).data!);
+        if(res)
+        {
+          redirect(`/deploy/${res}`);
+        }
 
-        // }
 
         
     }
