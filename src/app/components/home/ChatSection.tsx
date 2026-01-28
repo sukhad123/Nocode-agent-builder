@@ -283,7 +283,7 @@ export default function ChatSection({ selectedAgent }: Props) {
                   )}
                 </Button>
               </div>
-              <p className="text-xs text-gray-600 mt-2 text-center">
+              <p className="text-xs text-white mt-2 text-center">
                 Press Enter to send
               </p>
             </div>

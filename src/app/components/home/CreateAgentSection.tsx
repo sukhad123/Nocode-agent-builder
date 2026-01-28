@@ -124,7 +124,7 @@ export default function CreateAgentSection({ onAgentCreated }: Props) {
       >
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            <span className="  ">
               Create Your AI Agent
             </span>
           </h2>
@@ -165,7 +165,6 @@ export default function CreateAgentSection({ onAgentCreated }: Props) {
               <Button
                 color="primary"
                 size="lg"
-                className="md:w-auto w-full font-semibold px-8"
                 onPress={handleCreateClick}
               >
                 Create Agent
@@ -212,7 +211,7 @@ export default function CreateAgentSection({ onAgentCreated }: Props) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                <span className="text-white">Name Your Agent</span>
+                <span className="">Name Your Agent</span>
                 <span className="text-xs text-gray-400 font-normal">
                   Give your AI agent a memorable name
                 </span>
@@ -234,7 +233,7 @@ export default function CreateAgentSection({ onAgentCreated }: Props) {
                     }
                   }}
                 />
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="">
                   Training on: <span className="text-cyan-400">{websiteUrl}</span>
                 </p>
               </ModalBody>

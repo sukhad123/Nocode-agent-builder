@@ -7,7 +7,7 @@ import HeroSection from "./components/home/HeroSection";
 import CreateAgentSection from "./components/home/CreateAgentSection";
 import AgentsSection from "./components/home/AgentsSection";
 import ChatSection from "./components/home/ChatSection";
-
+import NavbarSection from "./components/home/NavbarSection";
 type DemoAgent = {
   id: string;
   name: string;
@@ -96,7 +96,7 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <motion.nav
+      {/* <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -140,7 +140,8 @@ export default function Home() {
             </Button>
           </div>
         </div>
-      </motion.nav>
+      </motion.nav> */}
+      <NavbarSection/>
 
       {/* Content */}
       <div className="relative z-10 pt-16">
@@ -179,7 +180,7 @@ export default function Home() {
           className="py-20 px-4 md:px-8"
         >
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            <h2  >
               Ready to build more powerful agents?
             </h2>
             <p className="text-gray-400 mb-8">
@@ -190,7 +191,7 @@ export default function Home() {
               <Button
                 color="primary"
                 size="lg"
-                className="font-semibold px-8"
+                
                 onPress={() => (window.location.href = "/signup")}
               >
                 Create Free Account
@@ -198,7 +199,7 @@ export default function Home() {
               <Button
                 variant="bordered"
                 size="lg"
-                className="font-semibold px-8 border-gray-700 text-gray-300 hover:border-gray-600"
+
                 onPress={() => (window.location.href = "/signin")}
               >
                 Sign In
